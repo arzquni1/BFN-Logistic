@@ -2,316 +2,289 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>BFN Logistics - Book Your Delivery</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
+    /* Reset & Smooth Scroll */
+    *, *::before, *::after {
+      margin:0; padding:0; box-sizing:border-box;
+      scroll-behavior: smooth;
+    }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8f9fa;
-      color: #333;
-      overflow-x: hidden;
+      font-family:'Poppins',sans-serif;
+      background:#f8f9fa;
+      color:#222;
+      overflow-x:hidden;
     }
-
+    /* Header */
     header {
-      background: #004d00;
-      padding: 20px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      background:#003300;
+      padding:20px 0;
+      position:sticky; top:0; z-index:100;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
     }
-
     .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      width:90%; max-width:1200px;
+      margin:auto;
+      display:flex; align-items:center;
+      justify-content:space-between; flex-wrap:wrap;
     }
-
-    .logo img {
-      height: 60px;
-      object-fit: contain;
-    }
-
+    .logo img { height:60px; object-fit:contain; }
     nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
+      list-style:none;
+      display:flex; gap:20px;
     }
-
     nav ul li a {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      transition: color 0.3s;
+      text-decoration:none;
+      color:#fff; font-weight:600;
+      transition:color .3s;
     }
-
-    nav ul li a:hover {
-      color: #fbc02d;
-    }
-
+    nav ul li a:hover { color:#fbc02d; }
     .btn-primary {
-      background: #fbc02d;
-      color: #000;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
+      background:#fbc02d; color:#000;
+      padding:10px 20px; border:none; border-radius:25px;
+      font-weight:600; cursor:pointer;
+      transition:background .3s;
     }
+    .btn-primary:hover { background:#ffa000; }
 
-    .btn-primary:hover {
-      background: #ffa000;
-    }
-
+    /* Hero with overlay */
     .hero {
-      background: url(https://i.postimg.cc/wx2gBb1y/2de42fbd-c46f-42a0-85b8-1e07af81837f.jpg) no-repeat center center/cover;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      color: white;
-      padding: 20px;
+      position:relative;
+      background:url('https://i.postimg.cc/sX8FppyS/IMG-7736.png') no-repeat center/cover;
+      min-height:90vh;
+      display:flex; align-items:center;
+      justify-content:center; flex-direction:column;
+      text-align:center; padding:20px;
     }
-
+    .hero::before {
+      content:""; position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.5);
+      z-index:0;
+    }
+    .hero h1, .hero p, .hero-buttons {
+      position:relative; z-index:1;
+      color:#fff;
+    }
     .hero h1 {
-      font-size: 42px;
-      margin-bottom: 20px;
-      animation: fadeInDown 1s ease-in-out;
+      font-size:42px; margin-bottom:20px;
+      animation:fadeInDown 1s ease-in-out;
     }
-
     .hero p {
-      font-size: 20px;
-      margin-bottom: 30px;
-      animation: fadeInUp 1s ease-in-out;
+      font-size:20px; margin-bottom:30px;
+      animation:fadeInUp 1s ease-in-out;
     }
-
     .hero-buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      animation: fadeInUp 1.5s ease-in-out;
+      display:flex; gap:15px; flex-wrap:wrap;
+      animation:fadeInUp 1.5s ease-in-out;
     }
-
     .btn-secondary {
-      background: transparent;
-      color: white;
-      border: 2px solid white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      background:transparent; color:#fff;
+      border:2px solid #fff; padding:10px 20px;
+      border-radius:25px; font-weight:600;
+      cursor:pointer; transition:background .3s,color .3s;
     }
-
     .btn-secondary:hover {
-      background: white;
-      color: #004d00;
+      background:#fff; color:#003300;
     }
 
-    section {
-      padding: 60px 20px;
-      background: white;
-    }
-
+    /* Section Titles */
+    section { padding:60px 20px; background:#fff; }
     h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #004d00;
-      font-size: 32px;
+      text-align:center; color:#003300;
+      font-size:32px; margin-bottom:20px;
     }
 
+    /* Services */
     .services-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 30px;
+      display:flex; gap:30px;
+      flex-wrap:wrap; justify-content:center;
+      margin-top:30px;
     }
-
     .service-box {
-      background: #f1f1f1;
-      border-radius: 10px;
-      padding: 30px;
-      text-align: center;
-      width: 300px;
-      transition: transform 0.3s;
+      background:#f1f1f1; border-radius:10px;
+      padding:30px; width:300px;
+      text-align:center; transition:transform .3s;
     }
+    .service-box:hover { transform:translateY(-8px); }
+    .service-box img { width:60px; margin-bottom:15px; }
+    .service-box h3 { color:#003300; margin-bottom:10px; }
+    .service-box p  { color:#333; }
 
-    .service-box:hover {
-      transform: translateY(-8px);
-    }
-
-    .service-box img {
-      width: 60px;
-      margin-bottom: 15px;
-    }
-
+    /* Booking Form */
+    #book { background:#fff; }
     .form-container {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #f1f1f1;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      max-width:600px; margin:40px auto;
+      background:#f1f1f1; padding:30px;
+      border-radius:10px;
+      box-shadow:0 4px 8px rgba(0,0,0,0.2);
     }
-
-    .form-container input, .form-container textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
+    .form-container input,
+    .form-container textarea,
+    .form-container input[type="file"] {
+      width:100%; padding:10px; margin-bottom:15px;
+      border:1px solid #ccc; border-radius:5px;
+      font-size:16px; color:#333;
     }
-
     .form-container button {
-      width: 100%;
-      padding: 12px;
-      background: #004d00;
-      color: white;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
+      width:100%; padding:12px;
+      background:#003300; color:#fff;
+      font-size:18px; border:none; border-radius:5px;
+      cursor:pointer; transition:background .3s;
+    }
+    .form-container button:hover { background:#005500; }
+
+    /* Contact */
+    .contact-info p {
+      text-align:center;
+      font-size:18px; margin:10px 0;
+      color:#333;
     }
 
-    .form-container button:hover {
-      background: #007a00;
-    }
-
+    /* Footer */
     footer {
-      background: #004d00;
-      padding: 20px;
-      text-align: center;
-      color: white;
-      font-size: 14px;
-      margin-top: 40px;
+      background:#003300; color:#f1f1f1;
+      text-align:center; padding:20px;
+      font-size:14px;
     }
-
     footer .footer-links a {
-      color: #fbc02d;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
+      color:#fbc02d; text-decoration:none;
+      margin:0 10px; font-weight:600;
     }
 
+    /* Animations */
     @keyframes fadeInDown {
-      from {opacity: 0; transform: translateY(-30px);}
-      to {opacity: 1; transform: translateY(0);}
+      from {opacity:0; transform:translateY(-30px);} 
+      to   {opacity:1; transform:translateY(0);}
     }
-
     @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
+      from {opacity:0; transform:translateY(30px);} 
+      to   {opacity:1; transform:translateY(0);}
     }
 
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .hero {
-        min-height: auto;
-        padding: 80px 20px;
-      }
-      .hero h1 {
-        font-size: 32px;
-      }
-      .services-grid {
-        flex-direction: column;
-      }
+    /* Responsive */
+    @media (max-width:768px) {
+      nav ul { flex-direction:column; gap:10px; }
+      .hero { min-height:auto; padding:80px 20px; }
+      .hero h1 { font-size:32px; }
+      .services-grid { flex-direction:column; }
     }
   </style>
 </head>
-
 <body>
 
-<header class="header">
-  <div class="container nav-container">
-    <div class="logo">
-      <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg" alt="BFN Logistics Logo" />
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg"
+             alt="BFN Logistics Logo" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#book">Book Delivery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="btn-primary"
+              onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        Book Now
+      </button>
     </div>
-    <nav class="navbar">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#book">Book Delivery</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book Now</button>
-  </div>
-</header>
+  </header>
 
-<section class="hero" id="home">
-  <h1>Fast & Reliable Logistics</h1>
-  <p>Delivering across Malete and beyond with speed and trust.</p>
-  <div class="hero-buttons">
-    <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book a Delivery</button>
-    <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
-  </div>
-</section>
-
-<section id="services">
-  <h2>What We Offer</h2>
-  <p style="text-align:center;">Your trusted partner for fast logistics and delivery solutions.</p>
-  <div class="services-grid">
-    <div class="service-box">
-      <img src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Fast Delivery" />
-      <h3>Fast Delivery</h3>
-      <p>On-time deliveries with real-time tracking.</p>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <h1>Fast & Reliable Logistics</h1>
+    <p>Delivering across Malete and beyond with speed and trust.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary"
+              onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        Book a Delivery
+      </button>
+      <button class="btn-secondary"
+              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Contact Us
+      </button>
     </div>
-    <div class="service-box">
-      <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Reliable" />
-      <h3>Reliable Service</h3>
-      <p>Trustworthy, professional, and safe logistics.</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>What We Offer</h2>
+    <div class="services-grid">
+      <div class="service-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Fast Delivery" />
+        <h3>Fast Delivery</h3>
+        <p>On-time deliveries with real-time tracking.</p>
+      </div>
+      <div class="service-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Reliable Service" />
+        <h3>Reliable Service</h3>
+        <p>Trustworthy, professional, and safe logistics.</p>
+      </div>
+      <div class="service-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/929/929426.png" alt="24/7 Support" />
+        <h3>24/7 Support</h3>
+        <p>Always available to serve you anytime.</p>
+      </div>
     </div>
-    <div class="service-box">
-      <img src="https://cdn-icons-png.flaticon.com/512/929/929426.png" alt="Support" />
-      <h3>24/7 Support</h3>
-      <p>Always available to serve you anytime.</p>
+  </section>
+
+  <!-- Booking Form -->
+  <section id="book">
+    <h2>Book a Delivery</h2>
+    <div class="form-container">
+      <form id="bookingForm">
+        <input type="text"   name="name"        placeholder="Full Name"              required>
+        <input type="email"  name="email"       placeholder="Email Address"         required>
+        <input type="text"   name="pickup"      placeholder="Pickup Location"       required>
+        <input type="text"   name="destination" placeholder="Destination"           required>
+        <input type="file"   name="attachment"  accept="image/*"            required>
+        <textarea            name="message"     placeholder="Special Instructions" rows="4"></textarea>
+        <button type="submit">Submit Booking</button>
+      </form>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="book">
-  <h2>Book a Delivery</h2>
-  <div class="form-container">
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="Pickup Location" required>
-      <input type="text" placeholder="Destination" required>
-      <textarea placeholder="Special Instructions (Optional)" rows="4"></textarea>
-      <button type="submit">Submit Booking</button>
-    </form>
-  </div>
-</section>
+  <!-- Contact Info -->
+  <section id="contact" class="contact-info">
+    <h2>Contact Us</h2>
+    <p><strong>Location:</strong> Westend Malete, Kwara State</p>
+    <p><strong>Phone:</strong> +234 807 841 9407 | +234 815 931 3281</p>
+    <p><strong>Email:</strong> bfnlogisticsservices001@gmail.com</p>
+  </section>
 
-<section class="contact-info" id="contact">
-  <h2>Contact Us</h2>
-  <p><strong>Location:</strong> Westend Malete, Kwara State</p>
-  <p><strong>Phone:</strong> +234 807 841 9407 | +234 815 931 3281</p>
-  <p><strong>Email:</strong> bfnlogisticsservices001@gmail.com</p>
-</section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 BFN Logistics & General Merchant. All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </div>
+  </footer>
 
-<footer>
-  <p>&copy; 2025 BFN Logistics & General Merchant. All Rights Reserved.</p>
-  <div class="footer-links">
-    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-  </div>
-</footer>
+  <!-- EmailJS Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("akvVbANNFJGAIvOxaZFkR");
+    })();
 
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('service_xy8174w', 'template_zwe7m3g', this)
+        .then(() => {
+          alert('✅ Booking sent successfully!');
+          this.reset();
+        }, (err) => {
+          console.error(err);
+          alert('❌ Oops, something went wrong. Please try again.');
+        });
+    });
+  </script>
 </body>
 </html>
