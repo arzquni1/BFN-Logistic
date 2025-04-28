@@ -3,80 +3,315 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BFN Logistics</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>BFN Logistics - Book Your Delivery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #004d00;
+      padding: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 60px;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #fbc02d;
+    }
+
+    .btn-primary {
+      background: #fbc02d;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #ffa000;
+    }
+
+    .hero {
+      background: url('https://i.postimg.cc/sX8FppyS/IMG-7736.png') no-repeat center center/cover;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #004d00;
+    }
+
+    section {
+      padding: 60px 20px;
+      background: white;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004d00;
+      font-size: 32px;
+    }
+
+    .services-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .service-box {
+      background: #f1f1f1;
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      width: 300px;
+      transition: transform 0.3s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-8px);
+    }
+
+    .service-box img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #f1f1f1;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .form-container input, .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background: #004d00;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .form-container button:hover {
+      background: #007a00;
+    }
+
+    footer {
+      background: #004d00;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    footer .footer-links a {
+      color: #fbc02d;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero {
+        min-height: auto;
+        padding: 80px 20px;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .services-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
- <header class="header">
+
+<header class="header">
   <div class="container nav-container">
     <div class="logo">
-      <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg" alt="BFN Logistics Logo" style="height: 60px; object-fit: contain;" />
+      <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg" alt="BFN Logistics Logo" />
     </div>
     <nav class="navbar">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#book">Book Delivery</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <button class="btn-primary">Book Now</button>
+    <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book Now</button>
   </div>
 </header>
 
-  <section class="hero">
-    <div class="container hero-content">
-      <div class="hero-text">
-        <h1>Fast & Reliable Logistics</h1>
-        <p>We deliver with speed, safety, and trust across Malete and beyond. Your go-to logistics & general merchant service.</p>
-        <div class="hero-buttons">
-          <button class="btn-primary">Book a Delivery</button>
-          <button class="btn-secondary">Call Us</button>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="hero" id="home">
+  <h1>Fast & Reliable Logistics</h1>
+  <p>Delivering across Malete and beyond with speed and trust.</p>
+  <div class="hero-buttons">
+    <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book a Delivery</button>
+    <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+  </div>
+</section>
 
-  <section class="services">
-    <div class="container">
-      <h2>What We Offer</h2>
-      <p>Efficient logistics and general merchant services to fit your needs.</p>
-      <div class="services-grid">
-        <div class="service-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Fast Delivery" />
-          <h3>Fast Delivery</h3>
-          <p>On-time delivery with real-time tracking support.</p>
-        </div>
-        <div class="service-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Reliable" />
-          <h3>Reliable Service</h3>
-          <p>Count on us for safety, trust, and professionalism.</p>
-        </div>
-        <div class="service-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/929/929426.png" alt="Support" />
-          <h3>24/7 Support</h3>
-          <p>Reach us anytime for delivery updates and assistance.</p>
-        </div>
-      </div>
+<section id="services">
+  <h2>What We Offer</h2>
+  <p style="text-align:center;">Your trusted partner for fast logistics and delivery solutions.</p>
+  <div class="services-grid">
+    <div class="service-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Fast Delivery" />
+      <h3>Fast Delivery</h3>
+      <p>On-time deliveries with real-time tracking.</p>
     </div>
-  </section>
+    <div class="service-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Reliable" />
+      <h3>Reliable Service</h3>
+      <p>Trustworthy, professional, and safe logistics.</p>
+    </div>
+    <div class="service-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/929/929426.png" alt="Support" />
+      <h3>24/7 Support</h3>
+      <p>Always available to serve you anytime.</p>
+    </div>
+  </div>
+</section>
 
-  <section class="contact-info">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <p><strong>Location:</strong> Westend Malete, Kwara State</p>
-      <p><strong>Phone:</strong> +234 807 841 9407 | +234 815 931 3281</p>
-      <p><strong>Email:</strong> bfnlogisticsservices001@gmail.com</p>
-    </div>
-  </section>
+<section id="book">
+  <h2>Book a Delivery</h2>
+  <div class="form-container">
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="Pickup Location" required>
+      <input type="text" placeholder="Destination" required>
+      <textarea placeholder="Special Instructions (Optional)" rows="4"></textarea>
+      <button type="submit">Submit Booking</button>
+    </form>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>&copy; 2025 BFN Logistics & General Merchant. All Rights Reserved.</p>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-      </div>
-    </div>
-  </footer>
+<section class="contact-info" id="contact">
+  <h2>Contact Us</h2>
+  <p><strong>Location:</strong> Westend Malete, Kwara State</p>
+  <p><strong>Phone:</strong> +234 807 841 9407 | +234 815 931 3281</p>
+  <p><strong>Email:</strong> bfnlogisticsservices001@gmail.com</p>
+</section>
+
+<footer>
+  <p>&copy; 2025 BFN Logistics & General Merchant. All Rights Reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+  </div>
+</footer>
+
 </body>
 </html>
