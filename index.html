@@ -17,7 +17,7 @@
       color:#222;
       overflow-x:hidden;
     }
-    /* Header */
+
     header {
       background:#003300;
       padding:20px 0;
@@ -49,10 +49,10 @@
     }
     .btn-primary:hover { background:#ffa000; }
 
-    /* Hero with overlay */
+
     .hero {
       position:relative;
-      background:url('https://i.postimg.cc/sX8FppyS/IMG-7736.png') no-repeat center/cover;
+      background:url(https://i.postimg.cc/pdxPd1dL/IMG-7736.jpg) no-repeat center/cover;
       min-height:90vh;
       display:flex; align-items:center;
       justify-content:center; flex-direction:column;
@@ -90,14 +90,12 @@
       background:#fff; color:#003300;
     }
 
-    /* Section Titles */
     section { padding:60px 20px; background:#fff; }
     h2 {
       text-align:center; color:#003300;
       font-size:32px; margin-bottom:20px;
     }
 
-    /* Services */
     .services-grid {
       display:flex; gap:30px;
       flex-wrap:wrap; justify-content:center;
@@ -113,7 +111,6 @@
     .service-box h3 { color:#003300; margin-bottom:10px; }
     .service-box p  { color:#333; }
 
-    /* Booking Form */
     #book { background:#fff; }
     .form-container {
       max-width:600px; margin:40px auto;
@@ -136,14 +133,12 @@
     }
     .form-container button:hover { background:#005500; }
 
-    /* Contact */
     .contact-info p {
       text-align:center;
       font-size:18px; margin:10px 0;
       color:#333;
     }
 
-    /* Footer */
     footer {
       background:#003300; color:#f1f1f1;
       text-align:center; padding:20px;
@@ -154,7 +149,6 @@
       margin:0 10px; font-weight:600;
     }
 
-    /* Animations */
     @keyframes fadeInDown {
       from {opacity:0; transform:translateY(-30px);} 
       to   {opacity:1; transform:translateY(0);}
@@ -164,7 +158,6 @@
       to   {opacity:1; transform:translateY(0);}
     }
 
-    /* Responsive */
     @media (max-width:768px) {
       nav ul { flex-direction:column; gap:10px; }
       .hero { min-height:auto; padding:80px 20px; }
@@ -175,7 +168,6 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="container">
       <div class="logo">
@@ -197,7 +189,6 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero" id="home">
     <h1>Fast & Reliable Logistics</h1>
     <p>Delivering across Malete and beyond with speed and trust.</p>
@@ -213,7 +204,6 @@
     </div>
   </section>
 
-  <!-- Services -->
   <section id="services">
     <h2>What We Offer</h2>
     <div class="services-grid">
@@ -235,7 +225,6 @@
     </div>
   </section>
 
-  <!-- Booking Form -->
   <section id="book">
     <h2>Book a Delivery</h2>
     <div class="form-container">
@@ -251,7 +240,6 @@
     </div>
   </section>
 
-  <!-- Contact Info -->
   <section id="contact" class="contact-info">
     <h2>Contact Us</h2>
     <p><strong>Location:</strong> Westend Malete, Kwara State</p>
@@ -259,7 +247,6 @@
     <p><strong>Email:</strong> bfnlogisticsservices001@gmail.com</p>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 BFN Logistics & General Merchant. All Rights Reserved.</p>
     <div class="footer-links">
@@ -267,7 +254,6 @@
     </div>
   </footer>
 
-  <!-- EmailJS Integration -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     (function(){
