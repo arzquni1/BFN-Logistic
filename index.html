@@ -2,275 +2,664 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>BFN Logistics - Book Your Delivery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BFN Logistics</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Reset & Smooth Scroll */
-    *, *::before, *::after {
-      margin:0; padding:0; box-sizing:border-box;
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
-      font-family:'Poppins',sans-serif;
-      background:#f8f9fa;
-      color:#222;
-      overflow-x:hidden;
+      font-family: 'Poppins', sans-serif;
+      background: #fef6f0;
+      color: #333;
     }
 
     header {
-      background:#003300;
-      padding:20px 0;
-      position:sticky; top:0; z-index:100;
-      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+      background: #000;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
-    .container {
-      width:90%; max-width:1200px;
-      margin:auto;
-      display:flex; align-items:center;
-      justify-content:space-between; flex-wrap:wrap;
-    }
-    .logo img { height:60px; object-fit:contain; }
-    nav ul {
-      list-style:none;
-      display:flex; gap:20px;
-    }
-    nav ul li a {
-      text-decoration:none;
-      color:#fff; font-weight:600;
-      transition:color .3s;
-    }
-    nav ul li a:hover { color:#fbc02d; }
-    .btn-primary {
-      background:#fbc02d; color:#000;
-      padding:10px 20px; border:none; border-radius:25px;
-      font-weight:600; cursor:pointer;
-      transition:background .3s;
-    }
-    .btn-primary:hover { background:#ffa000; }
 
+    .logo img { height: 50px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #FFA500;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover { color: #fff; }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      background: white;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+    }
 
     .hero {
-      position:relative;
-      background:url(https://i.postimg.cc/pdxPd1dL/IMG-7736.jpg) no-repeat center/cover;
-      min-height:90vh;
-      display:flex; align-items:center;
-      justify-content:center; flex-direction:column;
-      text-align:center; padding:20px;
+      background: url('https://i.postimg.cc/x1Qs3xph/IMG-7736.jpg') no-repeat center center/cover;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 30px;
     }
-    .hero::before {
-      content:""; position:absolute;
-      inset:0;
-      background:rgba(0,0,0,0.5);
-      z-index:0;
-    }
-    .hero h1, .hero p, .hero-buttons {
-      position:relative; z-index:1;
-      color:#fff;
-    }
+
     .hero h1 {
-      font-size:42px; margin-bottom:20px;
-      animation:fadeInDown 1s ease-in-out;
+      font-size: 3rem;
+      color: #FFA500;
     }
+
     .hero p {
-      font-size:20px; margin-bottom:30px;
-      animation:fadeInUp 1s ease-in-out;
-    }
-    .hero-buttons {
-      display:flex; gap:15px; flex-wrap:wrap;
-      animation:fadeInUp 1.5s ease-in-out;
-    }
-    .btn-secondary {
-      background:transparent; color:#fff;
-      border:2px solid #fff; padding:10px 20px;
-      border-radius:25px; font-weight:600;
-      cursor:pointer; transition:background .3s,color .3s;
-    }
-    .btn-secondary:hover {
-      background:#fff; color:#003300;
+      font-size: 1.2rem;
+      margin: 20px 0;
     }
 
-    section { padding:60px 20px; background:#fff; }
+    .hero button {
+      background: #FFA500;
+      color: #000;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
     h2 {
-      text-align:center; color:#003300;
-      font-size:32px; margin-bottom:20px;
+      text-align: center;
+      font-size: 2rem;
+      color: #000;
+      margin-bottom: 30px;
     }
 
-    .services-grid {
-      display:flex; gap:30px;
-      flex-wrap:wrap; justify-content:center;
-      margin-top:30px;
+    .services, .reviews-display {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
     }
-    .service-box {
-      background:#f1f1f1; border-radius:10px;
-      padding:30px; width:300px;
-      text-align:center; transition:transform .3s;
-    }
-    .service-box:hover { transform:translateY(-8px); }
-    .service-box img { width:60px; margin-bottom:15px; }
-    .service-box h3 { color:#003300; margin-bottom:10px; }
-    .service-box p  { color:#333; }
 
-    #book { background:#fff; }
+    .service-box, .review-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid #FFA500;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
     .form-container {
-      max-width:600px; margin:40px auto;
-      background:#f1f1f1; padding:30px;
-      border-radius:10px;
-      box-shadow:0 4px 8px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      border-top: 5px solid #FFA500;
     }
-    .form-container input,
-    .form-container textarea,
-    .form-container input[type="file"] {
-      width:100%; padding:10px; margin-bottom:15px;
-      border:1px solid #ccc; border-radius:5px;
-      font-size:16px; color:#333;
-    }
-    .form-container button {
-      width:100%; padding:12px;
-      background:#003300; color:#fff;
-      font-size:18px; border:none; border-radius:5px;
-      cursor:pointer; transition:background .3s;
-    }
-    .form-container button:hover { background:#005500; }
 
-    .contact-info p {
-      text-align:center;
-      font-size:18px; margin:10px 0;
-      color:#333;
+    .form-container input, .form-container textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background: #000;
+      color: #FFA500;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .form-container button:hover {
+      background: #FFA500;
+      color: #000;
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      padding: 12px 18px;
+      font-size: 18px;
+      border-radius: 50px;
+      text-decoration: none;
     }
 
     footer {
-      background:#003300; color:#f1f1f1;
-      text-align:center; padding:20px;
-      font-size:14px;
-    }
-    footer .footer-links a {
-      color:#fbc02d; text-decoration:none;
-      margin:0 10px; font-weight:600;
+      background: #000;
+      color: #FFA500;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
     }
 
-    @keyframes fadeInDown {
-      from {opacity:0; transform:translateY(-30px);} 
-      to   {opacity:1; transform:translateY(0);}
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        right: 20px;
+        top: 60px;
+        padding: 10px;
+        display: none;
+        border-radius: 8px;
+      }
+
+      nav ul.show { display: flex; }
+
+      .menu-toggle { display: flex; }
     }
-    @keyframes fadeInUp {
-      from {opacity:0; transform:translateY(30px);} 
-      to   {opacity:1; transform:translateY(0);}
+    #faq {
+  background: #111;
+  color: white;
+  padding: 60px 20px;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ffa500;
+}
+
+.faq-question {
+  background: none;
+  color: #ffa500;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  width: 90%;
+  text-align: left;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.faq-question:hover {
+  color: #fff;
+}
+
+.faq-answer {
+  padding: 0 10px 10px;
+  display: none;
+  color: #ccc;
+  font-size: 16px;
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg" alt="BFN Logo">
+  </div>
+  <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">
+    <span></span><span></span><span></span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="hero" style="background: url(https://i.postimg.cc/x1Qs3xph/IMG-7736.jpg) no-repeat center center/cover;">
+  <div class="overlay" style="background-color: rgba(0, 0, 0, 0.5); padding: px 20px;">
+    <h1 style=" color: white; animation: fadeInDown 1.5s ease-in-out;">
+      Welcome to BFN Logistics 
+      & General Merchant
+    </h1>
+    <p style="font-size: 1.3rem; color: #fff; margin-top: 10px; animation: fadeInUp 1.5s ease-in-out;">
+      Love delivered with speed, care, and trust.
+    </p>
+    <button style="background: #ff6a00; color: white; padding: 12px 24px; margin-top: 20px; border: none; border-radius: 25px; cursor: pointer; animation: bounceIn 2s ease-in-out;">
+      Book Now
+    </button>
+  </div>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service-box">
+      <h3>Express Delivery</h3>
+      <p>We ensure fast and secure deliveries within and outside town.</p>
+    </div>
+    <div class="service-box">
+      <h3>24/7 Customer Care</h3>
+      <p>Always available to take your orders and answer your questions.</p>
+    </div>
+    <div class="service-box">
+      <h3>Package Tracking</h3>
+      <p>Get real-time updates on the status of your parcel.</p>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <h2>Book a Delivery</h2>
+  <div class="form-container">
+    <form id="booking-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="Pickup Location" required>
+      <input type="text" placeholder="Destination" required>
+      <input type="file" accept="image/*" />
+      <textarea placeholder="Instructions or Notes" rows="4"></textarea>
+      <button type="submit">Submit Booking</button>
+    </form>
+  </div>
+</section>
+
+<section id="reviews">
+  <h2>Customer Reviews</h2>
+  <div class="form-container">
+    <form id="review-form">
+      <input type="text" id="reviewer-name" placeholder="Your Name" required>
+      <textarea id="review-text" placeholder="Your Review" rows="3" required></textarea>
+      <button type="submit">Post Review</button>
+    </form>
+  </div>
+  <div class="reviews-display" id="review-list"></div>
+</section>
+<section id="faq">
+  
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-container">
+    <div class="faq-item">
+      <button class="faq-question">What is BFN Logistics?</button>
+      <div class="faq-answer">BFN Logistics is your trusted delivery and shopping service based in Malete, delivering fast, safe, and reliable services across Kwara state.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">How do I book a delivery?</button>
+      <div class="faq-answer">Scroll to the "Book a Delivery" section, fill the form with accurate details and click submit. We'll take it from there
+      or Chat us via Whatsapp!</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Do I need to pay upfront?</button>
+      <div class="faq-answer">Yes, we require a 50% deposit before your shopping or delivery is processed. The remaining 50% is paid upon confirmation.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">How do I track my order?</button>
+      <div class="faq-answer">Once your order is accepted, we will contact you with updates. You can also use WhatsApp to reach us in real time.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Where do you operate?</button>
+      <div class="faq-answer">We operate in Kwara state(Malete, Ilorin, Elemere, shao) and nearby towns. Call us to confirm your location.</div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p style="text-align:center;">
+    Westend, Malete – Kwara State<br>
+    +234 807 841 9407<br>
+    bfnlogisticsservices001@gmail.com
+  </p>
+</section>
+
+<footer>
+  &copy; 2025 BFN Logistics. All Rights Reserved.
+</footer>
+
+<a href="https://wa.me/2348078419407" class="whatsapp-btn" target="_blank">WhatsApp</a>
+
+<script>
+  document.getElementById("review-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("reviewer-name").value;
+    const text = document.getElementById("review-text").value;
+    const reviewList = document.getElementById("review-list");
+
+    const box = document.createElement("div");
+    box.className = "review-box";
+    box.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+    reviewList.<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BFN Logistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
     }
 
-    @media (max-width:768px) {
-      nav ul { flex-direction:column; gap:10px; }
-      .hero { min-height:auto; padding:80px 20px; }
-      .hero h1 { font-size:32px; }
-      .services-grid { flex-direction:column; }
+    header {
+      background: #ff6a00;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo img { height: 50px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      background: white;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+    }
+
+    .hero {
+      background: url('https://i.postimg.cc/x1Qs3xph/IMG-7736.jpg') no-repeat center center/cover;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero h1 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
+    .hero p { font-size: 1.1rem; color: #f9f9f9; }
+
+    .hero button {
+      background: #fff;
+      color: #ff6a00;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 25px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    section { padding: 60px 20px; }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #ff6a00;
+    }
+
+    .services, .reviews-display, .step-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .service-box, .review-box, .step {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(255,106,0,0.2);
+      color: #fff;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 10px;
+    }
+
+    .form-container input, .form-container textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background: #ff6a00;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      padding: 12px 18px;
+      font-size: 18px;
+      border-radius: 50px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      text-decoration: none;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 30px 20px;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #ff6a00;
+        padding: 10px;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        border-radius: 8px;
+      }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: flex; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <div class="logo">
-        <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg"
-             alt="BFN Logistics Logo" />
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#book">Book Delivery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="btn-primary"
-              onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
-        Book Now
-      </button>
+<header>
+  <div class="logo">
+    <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg" alt="BFN Logo">
+  </div>
+  <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">
+    <span></span><span></span><span></span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#steps">How It Works</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faqs">FAQs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <h1>BFN Logistics & Shopping</h1>
+  <p>Reliable delivery and market shopping across Nigeria</p>
+  <button onclick="document.getElementById('book').scrollIntoView({ behavior: 'smooth' })">Book Now</button>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service-box">
+      <h3>Delivery</h3>
+      <p>We deliver anything to your doorstep — fast and secure.</p>
     </div>
-  </header>
-
-  <section class="hero" id="home">
-    <h1>Fast & Reliable Logistics</h1>
-    <p>Delivering across Malete and beyond with speed and trust.</p>
-    <div class="hero-buttons">
-      <button class="btn-primary"
-              onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
-        Book a Delivery
-      </button>
-      <button class="btn-secondary"
-              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Contact Us
-      </button>
+    <div class="service-box">
+      <h3>Local Shopping</h3>
+      <p>We shop for you from markets like Alaba, Oyingbo, Oniru etc.</p>
     </div>
-  </section>
-
-  <section id="services">
-    <h2>What We Offer</h2>
-    <div class="services-grid">
-      <div class="service-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Fast Delivery" />
-        <h3>Fast Delivery</h3>
-        <p>On-time deliveries with real-time tracking.</p>
-      </div>
-      <div class="service-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Reliable Service" />
-        <h3>Reliable Service</h3>
-        <p>Trustworthy, professional, and safe logistics.</p>
-      </div>
-      <div class="service-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/929/929426.png" alt="24/7 Support" />
-        <h3>24/7 Support</h3>
-        <p>Always available to serve you anytime.</p>
-      </div>
+    <div class="service-box">
+      <h3>Luxury Purchases</h3>
+      <p>Verified shoppers handle your luxury fashion and gadgets.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="book">
-    <h2>Book a Delivery</h2>
-    <div class="form-container">
-      <form id="bookingForm">
-        <input type="text"   name="name"        placeholder="Full Name"              required>
-        <input type="email"  name="email"       placeholder="Email Address"         required>
-        <input type="text"   name="pickup"      placeholder="Pickup Location"       required>
-        <input type="text"   name="destination" placeholder="Destination"           required>
-        <input type="file"   name="attachment"  accept="image/*"            required>
-        <textarea            name="message"     placeholder="Special Instructions" rows="4"></textarea>
-        <button type="submit">Submit Booking</button>
-      </form>
+<section id="steps">
+  <h2>How the Site Works</h2>
+  <div class="step-boxes">
+    <div class="step"><strong>Step 1:</strong><br> Request Items – Send your shopping list.</div>
+    <div class="step"><strong>Step 2:</strong><br> 50% Deposit – Confirm payment to begin.</div>
+    <div class="step"><strong>Step 3:</strong><br> We Shop For You – A vetted shopper gets to work.</div>
+    <div class="step"><strong>Step 4:</strong><br> Receive & Pay Balance – Confirm items, then complete payment.</div>
+  </div>
+</section>
+
+<section id="book">
+  <h2>Book a Delivery or Request Shopping</h2>
+  <div class="form-container">
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="Pickup/Market Location" required>
+      <input type="text" placeholder="Destination Address" required>
+      <input type="file" accept="image/*">
+      <textarea rows="4" placeholder="Details or Instructions"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+
+<section id="reviews">
+  <h2>Customer Reviews</h2>
+  <div class="reviews-display">
+    <div class="review-box">
+      <strong>Musa A.</strong>
+      <p>BFN handled my delivery on time and the rider was courteous. 5 stars!</p>
     </div>
-  </section>
-
-  <section id="contact" class="contact-info">
-    <h2>Contact Us</h2>
-    <p><strong>Location:</strong> Westend Malete, Kwara State</p>
-    <p><strong>Phone:</strong> +234 807 841 9407 | +234 815 931 3281</p>
-    <p><strong>Email:</strong> bfnlogisticsservices001@gmail.com</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 BFN Logistics & General Merchant. All Rights Reserved.</p>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    <div class="review-box">
+      <strong>Rukayat O.</strong>
+      <p>They helped me shop for fabrics from Oniru and delivered them neatly packed. I love it!</p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("akvVbANNFJGAIvOxaZFkR");
-    })();
+<section id="faqs">
+  <h2>FAQs</h2>
+  <div class="services">
+    <div class="service-box">
+      <h4>What is BFN Logistics?</h4>
+      <p>We deliver items and shop for people in local and luxury markets across Nigeria.</p>
+    </div>
+    <div class="service-box">
+      <h4>Do I need an account?</h4>
+      <p>No account needed. Just fill the booking form or chat us via WhatsApp.</p>
+    </div>
+    <div class="service-box">
+      <h4>Is my money safe?</h4>
+      <p>You pay 50% upfront and balance after verifying the items.</p>
+    </div>
+  </div>
+</section>
 
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      emailjs.sendForm('service_xy8174w', 'template_zwe7m3g', this)
-        .then(() => {
-          alert('✅ Booking sent successfully!');
-          this.reset();
-        }, (err) => {
-          console.error(err);
-          alert('❌ Oops, something went wrong. Please try again.');
-        });
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p style="text-align:center;">Westend, Malete – Kwara State<br>+234 807 841 9407<br>bfnlogisticsservices001@gmail.com</p>
+</section>
+
+<footer>
+  &copy; 2025 BFN Logistics. Built for trust and transparency.
+</footer>
+
+<a href="https://wa.me/2348078419407" class="whatsapp-btn" target="_blank">Chat on WhatsApp</a>
+
+</body>
+</html>(box);
+
+    this.reset();
+  });
+</script>
+<script>
+  // Toggle FAQ answers
+  const faqs = document.querySelectorAll('.faq-question');
+  faqs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
     });
-  </script>
+  });
+  
+  // Review posting functionality
+  document.getElementById("review-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("reviewer-name").value;
+    const text = document.getElementById("review-text").value;
+    const reviewList = document.getElementById("review-list");
+    
+    const box = document.createElement("div");
+    box.className = "review-box";
+    box.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+    reviewList.prepend(box);
+    this.reset();
+  });
+</script>
 </body>
 </html>
