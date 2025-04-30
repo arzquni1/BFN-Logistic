@@ -218,6 +218,156 @@
   color: #ccc;
   font-size: 16px;
 }
+#site-footer {
+  background: #111;
+  color: #ccc;
+  padding: 40px 20px;
+}
+#site-footer .footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  justify-content: space-between;
+}
+.footer-col {
+  flex: 1 1 180px;
+  min-width: 140px;
+}
+.logo-col img {
+  height: 50px;
+  margin-bottom: 10px;
+}
+.footer-col h4 {
+  color: #ffa500;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.footer-col ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover {
+  color: #ffa500;
+}
+.socials-col .social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+.social-icons img {
+  width: 24px;
+  filter: invert(85%);
+  transition: filter 0.2s;
+}
+.social-icons img:hover {
+  filter: invert(50%) sepia(1) saturate(5) hue-rotate(10deg);
+}
+
+@media (max-width: 768px) {
+  #site-footer .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-col {
+    width: 100%;
+  }
+}
+/* Trust & Transparency Section */
+.trust-section {
+  background: #ff6a00;
+  color: #fff;
+  padding: 60px 20px;
+}
+
+.trust-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.trust-features {
+  flex: 1 1 400px;
+}
+
+.trust-features h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.trust-features p {
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.feature-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.feature-box img {
+  width: 48px;
+  height: 48px;
+  margin-right: 15px;
+}
+
+.feature-box strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.feature-box p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Right image */
+.trust-image {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.trust-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trust-container {
+    flex-direction: column;
+  }
+  .trust-features, .trust-image {
+    flex: 1 1 auto;
+  }
+  .trust-features {
+    order: 2;
+  }
+  .trust-image {
+    order: 1;
+    margin-bottom: 30px;
+  }
+}
   </style>
 </head>
 <body>
@@ -236,10 +386,10 @@
       <li><a href="#book">Book</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#faq">FAQ </a></li>
     </ul>
   </nav>
 </header>
-
 <section class="hero" id="hero" style="background: url(https://i.postimg.cc/x1Qs3xph/IMG-7736.jpg) no-repeat center center/cover;">
   <div class="overlay" style="background-color: rgba(0, 0, 0, 0.5); padding: px 20px;">
     <h1 style=" color: white; animation: fadeInDown 1.5s ease-in-out;">
@@ -299,9 +449,41 @@
   </div>
   <div class="reviews-display" id="review-list"></div>
 </section>
+<section id="trust" class="trust-section">
+  <div class="trust-container">
+    <div class="trust-features">
+      <h2>Trust & Transparency</h2>
+      <p>Thank you for contacting BFN Logistics service & General Merchant
+We are your trusted partner for fast and reliable delivery service</p>
+ <p>We’re committed to delivering the best service while ensuring complete transparency in every shopping and erand experience.</p>
+      <div class="feature-box">
+        <img src=https://i.postimg.cc/ncQLhxZT/IMG-8007.jpg alt="WhatsApp Chat">
+        <div>
+          <strong>Live WhatsApp Chat & Tracking</stron=g>
+          <p>Get real-time updates and support.</p>
+        </div>
+      </div>
+      <div class="feature-box">
+        <div>
+          <strong>Only Pay After Verification</strong>
+          <p>We only take TRANSFER as mode of payment </p>
+        </div>
+      </div>
+      <div class="feature-box">
+        <img src="https://i.postimg.cc/cCvLYy3x/IMG-8010.jpg alt="Vetted Shoppers">
+        <div>
+          <strong>Same Day Delivery </strong>
+          <p>FRAGILE ITEMs, BULKY ITEMs are billed differently and treated with Priority!</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="trust-image">
+      <img src="https://i.postimg.cc/YCZjxS35/2de42fbd-c46f-42a0-85b8-1e07af81837f.jpg alt="Happy Shoppers">
+    </div>
+  </div>
+</section>
 <section id="faq">
-  
-  <h2>Frequently Asked Questions</h2>
   <div class="faq-container">
     <div class="faq-item">
       <button class="faq-question">What is BFN Logistics?</button>
@@ -324,17 +506,65 @@
       <button class="faq-question">Where do you operate?</button>
       <div class="faq-answer">We operate in Kwara state(Malete, Ilorin, Elemere, shao) and nearby towns. Call us to confirm your location.</div>
     </div>
+  </div><footer id="site-footer">
+  <div class="footer-top">
+    <div class="footer-col logo-col">
+      <img src="https://i.postimg.cc/CxhwmdKT/d00fd529-0e00-4429-9dda-5e78a29761bd.jpg" alt="BFN Logo">
+      <p>© 2025 BFN Logistics. All rights reserved.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#steps">How It Works</a></li>
+        <li><a href="#faq">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Where We Operate</h4>
+      <ul>
+        <li>Malete – Ilorin</li>
+        <li>Elemere</li>
+        <li>Shao</li>
+        <li>Offa</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li>Personal Shopping</li>
+        <li>Delivery &amp; Pickup</li>
+        <li>Live Shopper Tracking</li>
+        <li>Secure Payments</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>+234 807 841 9407</li>
+        <li>info@bfnlogistics.com</li>
+      </ul>
+    </div>
+    <div class="footer-col socials-col">
+  <h4>Follow Us</h4>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/YourPage" target="_blank" aria-label="Facebook">
+      <img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook">
+    </a>
+    <a href="https://twitter.com/YourHandle" target="_blank" aria-label="Twitter">
+      <img src="https://cdn-icons-png.flaticon.com/24/733/733579.png" alt="X (Twitter)">
+    </a>
+    <a href="https://www.linkedin.com/in/YourProfile" target="_blank" aria-label="LinkedIn">
+      <img src="https://cdn-icons-png.flaticon.com/24/733/733561.png" alt="LinkedIn">
+    </a>
+    <a href=https://www.instagram.com/bfnlogisticsandgeneralmerchant?igsh=MXBsbXl6eG1lMDJ2aw=/ target="_blank" aria-label="Instagram">
+      <img src="https://cdn-icons-png.flaticon.com/24/733/733558.png" alt="Instagram">
+    </a>
   </div>
-</section>
-<section id="contact">
-  <h2>Contact Us</h2>
-  <p style="text-align:center;">
-    Westend, Malete – Kwara State<br>
-    +234 807 841 9407<br>
-    bfnlogisticsservices001@gmail.com
-  </p>
-</section>
-
+</div>
+    </div>
+  </div>
+</footer>
 <footer>
   &copy; 2025 BFN Logistics. All Rights Reserved.
 </footer>
